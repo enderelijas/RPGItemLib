@@ -10,6 +10,9 @@ plugins {
     id 'java-library'
 }
 
+version = '0.8.0'
+group = 'me.enderelijas'
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
@@ -39,9 +42,17 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+    withSourcesJar()
 }
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+tasks.named('jar') {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                'Implementation-Version': project.version)
+    }
 }
