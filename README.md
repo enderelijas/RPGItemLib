@@ -33,7 +33,7 @@ public class Events implements Listener {
 @Override
 public void onEnable() {
     // Plugin startup logic
-    RPGItemRegistry registry = new RPGItemRegistry();
+    RPGItemRegistry registry = new RPGItemRegistry(this);
 
     Bukkit.getPluginManager().registerEvents(new Events(registry), this);
 }
@@ -41,8 +41,8 @@ public void onEnable() {
 
 ### 3. Create custom item by extending `RPGItem` class
 ```java
-public class ArtisanalShortbow extends RPGItem {
-    public ArtisanalShortbow() {
+public class Shortbow extends RPGItem {
+    public Shortbow() {
         super(Material.BOW);
 
         abilities = Map.of(AbilityAction.RIGHT_CLICK, new Ability() {
@@ -81,8 +81,8 @@ public class ArtisanalShortbow extends RPGItem {
 @Override
 public void onEnable() {
     // Plugin startup logic
-    RPGItemRegistry registry = new RPGItemRegistry();
-    ArtisanalShortbow shortbow = new ArtisanalShortbow();
+    RPGItemRegistry registry = new RPGItemRegistry(this);
+    Shortbow shortbow = new Shortbow();
 
     registry.register(shortbow);
 
